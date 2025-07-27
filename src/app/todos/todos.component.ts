@@ -1,27 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { generateClient } from 'aws-amplify/data';
+import { generateClient, type Client } from 'aws-amplify/data';
 import type { Schema } from '../../../amplify/data/resource';
-
-const client = generateClient<Schema>();
 
 @Component({
     selector: 'app-todos',
     imports: [CommonModule],
     templateUrl: './todos.component.html',
-    styleUrl: './todos.component.css'
+    styleUrl: './todos.component.scss'
 })
 export class TodosComponent implements OnInit {
-  todos: any[] = [];
+  todos: Schema['Todo']['type'][] = [];
+  private client!: Client<Schema>;
 
   ngOnInit(): void {
-    this.listTodos();
+    setTimeout(() => {
+      this.client = generateClient<Schema>();
+      this.listTodos();
+    }, 100);
   }
 
   listTodos() {
     try {
-      client.models.Todo.observeQuery().subscribe({
-        next: ({ items, isSynced }) => {
+      this.client.models.Todo.observeQuery().subscribe({
+        next: ({ items, isSynced }: { items: Schema['Todo']['type'][], isSynced: boolean }) => {
           this.todos = items;
         },
       });
@@ -32,7 +34,7 @@ export class TodosComponent implements OnInit {
 
   createTodo() {
     try {
-      client.models.Todo.create({
+      this.client.models.Todo.create({
         content: window.prompt('Todo content'),
       });
       this.listTodos();
