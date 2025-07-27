@@ -14,16 +14,14 @@ export class TodosComponent implements OnInit {
   private client!: Client<Schema>;
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.client = generateClient<Schema>();
-      this.listTodos();
-    }, 100);
+    this.client = generateClient<Schema>();
+    this.listTodos();
   }
 
   listTodos() {
     try {
       this.client.models.Todo.observeQuery().subscribe({
-        next: ({ items, isSynced }: { items: Schema['Todo']['type'][], isSynced: boolean }) => {
+        next: ({ items, isSynced }) => {
           this.todos = items;
         },
       });
