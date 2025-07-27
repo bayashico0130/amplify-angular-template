@@ -6,7 +6,7 @@ import { TodosComponent } from './todos/todos.component';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    imports: [RouterOutlet, TodosComponent]
+    imports: [TodosComponent]
 })
 export class AppComponent {
   title = 'amplify-angular-template';
