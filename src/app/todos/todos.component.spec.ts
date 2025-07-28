@@ -40,4 +40,17 @@ describe('TodosComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should fetch todos on init', () => {
+    expect(component.todos).toEqual(mockTodos);
+  });
+
+  it('should have correct number of todos', () => {
+    expect(component.todos.length).toBe(2);
+  });
+
+  it('should have correct todo content', () => {
+    expect(component.todos[0].content).toBe('Test Todo 1');
+    expect(component.todos[1].content).toBe('Test Todo 2');
+  });
 });

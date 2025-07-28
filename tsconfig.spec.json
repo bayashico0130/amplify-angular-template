@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist/out-tsc/spec",
     "baseUrl": "src",
-    "types": ["node", "jest", "@testing-library/jest-dom"]
+    "types": ["node", "jest"]
   },
   "include": ["**/*.spec.ts", "**/*.d.ts"]
 }

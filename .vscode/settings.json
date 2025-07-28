@@ -1,4 +1,13 @@
 {
     "editor.formatOnSave": true,
-    "files.autoSave": "onFocusChange"
+    "files.autoSave": "onFocusChange",
+    "jest.jestCommandLine": "npm run ng test --",
+    "jest.useDashedArgs": true,
+    "jest.coverageFormatter": "GutterFormatter",
+    "jest.runMode": {
+        "runAllTestsOnStartup": false,
+        "type": "on-demand",
+        "coverage": true,
+    },
+    "jest.useJest30": false,
 }
