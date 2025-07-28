@@ -1,7 +1,10 @@
 import type { Config } from 'jest';
-import { createCjsPreset } from 'jest-preset-angular/presets';
+import { createEsmPreset } from 'jest-preset-angular/presets';
 
 export default {
-  ...createCjsPreset(),
+  ...createEsmPreset(),
   setupFilesAfterEnv: ['<rootDir>/src/setup-jest.ts'],
+  transformIgnorePatterns: [
+    'node_modules/(?!.*\.mjs$)',
+  ],
 } satisfies Config;
