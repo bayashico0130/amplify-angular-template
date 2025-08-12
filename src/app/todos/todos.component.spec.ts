@@ -4,7 +4,7 @@ import { TodosComponent } from './todos.component';
 
 const mockTodos = [
   { id: '1', content: 'Test Todo 1', createdAt: '2023-01-01', updatedAt: '2023-01-01' },
-  { id: '2', content: 'Test Todo 2', createdAt: '2023-01-02', updatedAt: '2023-01-02' }
+  { id: '2', content: 'Test Todo 2', createdAt: '2023-01-02', updatedAt: '2023-01-02' },
 ];
 
 jest.mock('aws-amplify/data', () => ({
@@ -14,12 +14,12 @@ jest.mock('aws-amplify/data', () => ({
         observeQuery: jest.fn(() => ({
           subscribe: jest.fn((callback) => {
             callback.next({ items: mockTodos, isSynced: true });
-          })
+          }),
         })),
-        create: jest.fn((todo) => Promise.resolve({ data: { ...todo, id: Date.now().toString() } }))
-      }
-    }
-  }))
+        create: jest.fn((todo) => Promise.resolve({ data: { ...todo, id: Date.now().toString() } })),
+      },
+    },
+  })),
 }));
 
 describe('TodosComponent', () => {
@@ -28,10 +28,9 @@ describe('TodosComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TodosComponent]
-    })
-    .compileComponents();
-    
+      imports: [TodosComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(TodosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
