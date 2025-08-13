@@ -14,7 +14,13 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
     expect(app.title).toEqual('amplify-angular-template');
+  });
+
+  it('should render exactly one amplify-authenticator element', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('amplify-authenticator')).toBeTruthy();
+    const authenticatorElements = compiled.querySelectorAll('amplify-authenticator');
+    expect(authenticatorElements.length).toBe(1);
   });
 });
