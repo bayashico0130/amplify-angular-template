@@ -3,10 +3,17 @@
     <h1>My todos</h1>
     <button (click)="createTodo()">+ new</button>
     <ul>
-        <li 
-            *ngFor="let todo of todos;" (click)="deleteTodo(todo.id)">
-            {{ todo.content }}
-        </li>
+        @for (todo of todos; track todo.id) {
+            <li>
+                <button 
+                    (click)="deleteTodo(todo.id)"
+                    (keydown.enter)="deleteTodo(todo.id)"
+                    (keydown.space)="deleteTodo(todo.id)"
+                    class="todo-item">
+                    {{ todo.content }}
+                </button>
+            </li>
+        }
     </ul>
     <div>
         🥳 App successfully hosted. Try creating a new todo.
